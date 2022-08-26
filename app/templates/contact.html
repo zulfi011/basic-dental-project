@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block meta_description %}
+This is my website
+{% endblock %}
+
+{% block content %}
+
+{% if message_name %}
+<center><h2 style="font-size: 45px; color: blue; margin-top: 20px">Thanks {{ message_name }}</h2><p style="font-size: 20px; color: silver; margin-top: 5px">we got your email</p></center>
+
+{% else %}
+<!-- booking section starts   -->
+
+<section class="book" id="book">
+
+    <h1 class="heading"> <span>book</span> now </h1>    
+
+    <div class="row">
+
+        <div class="image">
+            <img src="{% static 'app/image/book-img.svg' %}" alt="">
+        </div>
+
+        <form action="{{ contact }}" method="post">
+        	{% csrf_token %}
+            <h3>book appointment</h3>
+            <input type="text" placeholder="your name" class="box" name="message-name">
+            <input type="email" placeholder="your email" class="box" name="message-email">
+            <textarea rows="5" cols="5" placeholder="Message" class="box" name="message"></textarea>
+            <input type="date" class="box">
+            <input type="submit" value="book now" class="btn">
+        </form>
+
+    </div>
+
+</section>
+
+<!-- booking section ends -->
+
+{% endif %}
+
+
+{% endblock %}
